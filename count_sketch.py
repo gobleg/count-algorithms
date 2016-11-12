@@ -6,7 +6,7 @@ if len(sys.argv) is 4:
     bin_number = int(sys.argv[2])
     bin_size = int(sys.argv[3])
 else:
-    print "python count_min_sketch.py file_name bin_number, bin_size"
+    print "python count_sketch.py file_name bin_number, bin_size"
     sys.exit()
 
 def median(values):
@@ -20,10 +20,11 @@ def median(values):
 def hash(bins, data, value):
     for i in range(0, bin_number):
         key = int(xxhash.xxh32(data, seed=i).hexdigest(), 16) % bin_size
+        sign = int(xxhash.xxh32(data, seed=i+bin_number).hexdigest(), 16) % 2
         if key in bins[i]:
-            bins[i][key] += value
+            bins[i][key] += (value * (-1)**sign)
         else:
-            bins[i][key] = value
+            bins[i][key] = (value * (-1)**sign)
 
 def check_value(bins, item):
     values = []
