@@ -9,6 +9,14 @@ else:
     print "python count_min_sketch.py file_name bin_number, bin_size"
     sys.exit()
 
+def median(values):
+    if len(values) > 2:
+        return median(values[1:-1])
+    elif len(values) is 2:
+        return (values[0] + values[1]) / 2
+    else:
+        return values[0]
+
 def hash(bins, data):
     for i in range(0, bin_number):
         key = int(xxhash.xxh32(data, seed=i).hexdigest(), 16) % bin_size
@@ -18,12 +26,14 @@ def hash(bins, data):
             bins[key] = 1
 
 def check_value(bins, item):
-    min_value = float("inf")
+    values = []
     for i in range(0, bin_number):
         key = int(xxhash.xxh32(item, seed=i).hexdigest(), 16) % bin_size
         if key in bins:
-            min_value = min(min_value, bins[key]) 
-    return min_value
+            values.append(bins[key])
+    if not values:
+        values = [0]
+    return median(values)
 
 bins = {}
 f = open(file_name, 'r')
