@@ -1,13 +1,4 @@
 import xxhash
-import sys
-
-if len(sys.argv) is 4:
-    file_name = sys.argv[1]
-    bin_number = int(sys.argv[2])
-    bin_size = int(sys.argv[3])
-else:
-    print "python count_min_sketch.py file_name bin_number, bin_size"
-    sys.exit()
 
 def median(values):
     if len(values) > 2:
@@ -17,17 +8,17 @@ def median(values):
     else:
         return values[0]
 
-def hash(bins, data, value):
-    for i in range(0, bin_number):
+def hash(bins, data, value, bin_size):
+    for i in range(len(bins)):
         key = int(xxhash.xxh32(data, seed=i).hexdigest(), 16) % bin_size
         if key in bins[i]:
             bins[i][key] += value
         else:
             bins[i][key] = value
 
-def check_value(bins, item):
+def check_value(bins, item, bin_size):
     values = []
-    for i in range(0, bin_number):
+    for i in range(len(bins)):
         key = int(xxhash.xxh32(item, seed=i).hexdigest(), 16) % bin_size
         if key in bins[i]:
             values.append(bins[i][key])
@@ -35,9 +26,11 @@ def check_value(bins, item):
         values = [0]
     return median(values)
 
-bins = [{} for i in range(0, bin_number)]
-f = open(file_name, 'r')
-for line in f:
-    hash(bins, line.rstrip(), 1)
-print bins
-print check_value(bins, "4")
+def count_median_sketch(file_name, bin_number, bin_size):
+    bins = [{} for i in range(0, bin_number)]
+    f = open(file_name, 'r')
+    for line in f:
+        hash(bins, line.rstrip(), 1, bin_size)
+    print bins
+    print check_value(bins, "4", bin_size)
+    return bins
