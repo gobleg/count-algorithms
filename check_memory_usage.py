@@ -18,17 +18,26 @@ def linear_count(data, bin_number, bin_size):
             counts[d] = 1
     return dict(sorted(counts.items(), key=operator.itemgetter(1), reverse=True)[:bin_size])
 
-def error(observed, query_func, bin_size, truth, n=1):
+def error(observed, query_func, truth, n=1):
     vec = []
     for k in truth.keys():
-        vec.append(truth[k] - query_func(observed, k, bin_size))
+        vec.append(truth[k] - query_func(observed, k))
     return np.linalg.norm(vec, n)
 
 def run(algorithm, file_name, bin_number, bin_size):
-    df = pd.read_csv(file_name, index_col='Id')
-    data = []
-    for row in df.iterrows():
-        data.extend(row[1]['Name'] * row[1]['Count'])
+    # Use for names
+    # df = pd.read_csv(file_name, index_col='Id')
+    # data = []
+    # for row in df.iterrows():
+    #     data.extend(row[1]['Name'] * row[1]['Count'])
+
+    # Use for shakespeare
+    f = open(file_name)
+    s = f.read()
+    import string
+    s = s.lower()
+    s = s.translate(None, string.punctuation)
+    data = s.split()
     return eval(algorithm)(data, bin_number, bin_size)
 
 if __name__ == '__main__':
@@ -38,9 +47,10 @@ if __name__ == '__main__':
         bin_number = int(sys.argv[3])
         bin_size = int(sys.argv[4])
         bins = run(algorithm, file_name, bin_number, bin_size)
+        print 'Finished first run'
         bins2 = run('linear_count', file_name, bin_number, bin_size)
         print bins
-        print error(bins, check_min, bin_size, bins2)
+        print error(bins, check_min, bins2, n=np.inf)
     else:
         print "python check_memory_usage.py algorithm file_name bin_number bin_size"
         sys.exit()
