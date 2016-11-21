@@ -8,6 +8,7 @@ from count_median_sketch import count_median_sketch, check_median
 from count_min_sketch import count_min_sketch, check_min
 from count_sketch import count_sketch
 
+@profile
 def linear_count(data, bin_number, bin_size):
     counts = {}
     for d in data:
@@ -23,7 +24,6 @@ def error(observed, query_func, bin_size, truth, n=1):
         vec.append(truth[k] - query_func(observed, k, bin_size))
     return np.linalg.norm(vec, n)
 
-@profile
 def run(algorithm, file_name, bin_number, bin_size):
     df = pd.read_csv(file_name, index_col='Id')
     data = []
