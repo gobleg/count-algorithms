@@ -34,3 +34,12 @@ def count_median_sketch(file_name, bin_number, bin_size):
     print bins
     print check_value(bins, "4", bin_size)
     return bins
+
+def count_median_sketch(file_name, bin_size, bins):
+    bin_number = len(bins)
+    f = open(file_name, 'r')
+    for line in f:
+        hash(bins, line.rstrip(), 1, bin_size)
+    print bins
+    print check_value(bins, "4", bin_size)
+    return bins
