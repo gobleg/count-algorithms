@@ -1,9 +1,11 @@
 import sys
+import operator
 from memory_profiler import profile
 import pandas as pd
+import numpy as np
 
-from count_median_sketch import count_median_sketch
-from count_min_sketch import count_min_sketch
+from count_median_sketch import count_median_sketch, check_median
+from count_min_sketch import count_min_sketch, check_min
 from count_sketch import count_sketch
 
 def linear_count(data, bin_number, bin_size):
@@ -13,7 +15,13 @@ def linear_count(data, bin_number, bin_size):
             counts[d] += 1
         else:
             counts[d] = 1
-    return dict(sorted(counts, key=counts.get, reverse=True)[:bin_size])
+    return dict(sorted(counts.items(), key=operator.itemgetter(1), reverse=True)[:bin_size])
+
+def error(observed, query_func, bin_size, truth, n=1):
+    vec = []
+    for k in truth.keys():
+        vec.append(truth[k] - query_func(observed, k, bin_size))
+    return np.linalg.norm(vec, n)
 
 @profile
 def run(algorithm, file_name, bin_number, bin_size):
@@ -30,6 +38,9 @@ if __name__ == '__main__':
         bin_number = int(sys.argv[3])
         bin_size = int(sys.argv[4])
         bins = run(algorithm, file_name, bin_number, bin_size)
+        bins2 = run('linear_count', file_name, bin_number, bin_size)
+        print bins
+        print error(bins, check_min, bin_size, bins2)
     else:
         print "python check_memory_usage.py algorithm file_name bin_number bin_size"
         sys.exit()
