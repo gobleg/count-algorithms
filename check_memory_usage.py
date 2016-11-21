@@ -1,25 +1,27 @@
 import sys
 from memory_profiler import profile
+import pandas as pd
 
 from count_median_sketch import count_median_sketch
 from count_min_sketch import count_min_sketch
 from count_sketch import count_sketch
 
-def linear_count(file, bin_number, bin_size):
-    # bin_number and bin_size not used, there might be a better way to do this
+def linear_count(data, bin_number, bin_size):
     counts = {}
-    f = open(file, 'r')
-    for line in f:
-        key = line.rstrip()
-        if key in counts:
-            counts[key] += 1
+    for d in data:
+        if d in counts:
+            counts[d] += 1
         else:
-            counts[key] = 1
-    return counts
+            counts[d] = 1
+    return dict(sorted(counts, key=counts.get, reverse=True)[:bin_size])
 
 @profile
 def run(algorithm, file_name, bin_number, bin_size):
-    return eval(algorithm)(file_name, bin_number, bin_size)
+    df = pd.read_csv(file_name, index_col='Id')
+    data = []
+    for row in df.iterrows():
+        data.extend(row[1]['Name'] * row[1]['Count'])
+    return eval(algorithm)(data, bin_number, bin_size)
 
 if __name__ == '__main__':
     if len(sys.argv) is 5:

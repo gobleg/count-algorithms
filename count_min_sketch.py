@@ -1,4 +1,5 @@
 import xxhash
+from memory_profiler import profile
 
 def hash(bins, data, value, bin_size):
     for i in range(len(bins)):
@@ -16,20 +17,18 @@ def check_value(bins, item, bin_size):
             min_value = min(min_value, bins[i][key]) 
     return min_value
 
-def count_min_sketch(file_name, bin_number, bin_size):
+@profile
+def count_min_sketch(data, bin_number, bin_size):
     bins = [{} for i in range(0, bin_number)]
-    f = open(file_name, 'r')
-    for line in f:
-        hash(bins, line.rstrip(), 1, bin_size)
-    print bins
+    for d in data:
+        hash(bins, d, 1, bin_size)
     print check_value(bins, "4", bin_size)
     return bins
 
-def count_min_sketch(file_name, bin_size, bins):
+@profile
+def count_min_sketch2(data, bin_size, bins):
     bin_number = len(bins)
-    f = open(file_name, 'r')
-    for line in f:
-        hash(bins, line.rstrip(), 1, bin_size)
-    print bins
+    for d in data:
+        hash(bins, d, 1, bin_size)
     print check_value(bins, "4", bin_size)
     return bins
