@@ -3,6 +3,7 @@ import operator
 from memory_profiler import profile
 import pandas as pd
 import numpy as np
+import pickle
 
 from count_median_sketch import count_median_sketch, check_median
 from count_min_sketch import count_min_sketch, check_min
@@ -16,7 +17,7 @@ def linear_count(data, bin_number, bin_size):
             counts[d] += 1
         else:
             counts[d] = 1
-    return dict(sorted(counts.items(), key=operator.itemgetter(1), reverse=True)[:bin_size])
+    return counts
 
 def error(observed, query_func, truth, n=1):
     vec = []
@@ -47,10 +48,10 @@ if __name__ == '__main__':
         bin_number = int(sys.argv[3])
         bin_size = int(sys.argv[4])
         bins = run(algorithm, file_name, bin_number, bin_size)
-        print 'Finished first run'
-        bins2 = run('linear_count', file_name, bin_number, bin_size)
-        print bins
-        print error(bins, check_min, bins2, n=np.inf)
+        print 'Finished run'
+        bins2 = pickle.load(open('shakespeare_linear.out', 'r'))
+        top_k = dict(sorted(bins2.items(), key=operator.itemgetter(1), reverse=True)[:bin_size])
+        print 'Error: ' + str(error(bins, check_min, top_k, n=np.inf))
     else:
         print "python check_memory_usage.py algorithm file_name bin_number bin_size"
         sys.exit()
