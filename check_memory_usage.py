@@ -49,9 +49,8 @@ if __name__ == '__main__':
         bin_size = int(sys.argv[4])
         bins = run(algorithm, file_name, bin_number, bin_size)
         print 'Finished run'
-        bins2 = pickle.load(open('shakespeare_linear.out', 'r'))
-        top_k = dict(sorted(bins2.items(), key=operator.itemgetter(1), reverse=True)[:bin_size])
-        print 'Error: ' + str(error(bins, check_min, top_k, n=np.inf))
+        truth = pickle.load(open('shakespeare_linear.out', 'r'))
+        print 'Error: ' + str(error(bins, check_min, truth, n=np.inf))
     else:
         print "python check_memory_usage.py algorithm file_name bin_number bin_size"
         sys.exit()
