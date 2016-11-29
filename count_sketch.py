@@ -22,12 +22,12 @@ def check_sketch(bins, item):
 def count_sketch(data, bin_number, bin_size):
     bins = [[0] * bin_size for i in range(0, bin_number)]
     for d in data:
-        hash(bins, d, 1)
+        hash(bins, d[0], d[1])
     return bins
 
 @profile
 def count_sketch2(data, bins):
     bin_number = len(bins)
     for d in data:
-        hash(bins, d, 1)
+        hash(bins, d[0], d[1])
     return bins
