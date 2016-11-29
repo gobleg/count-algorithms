@@ -25,6 +25,12 @@ def error(observed, query_func, truth, n=1):
         vec.append(truth[k] - query_func(observed, k))
     return np.linalg.norm(vec, n)
 
+def sparse_norm(bins, k=10, n=1):
+    top_k = dict(sorted(bins.items(), key=operator.itemgetter(1), reverse=True)[:k])
+    for key in top_k:
+        bins[key] = 0
+    return np.linalg.norm(bins.values(), n)
+
 def run(algorithm, file_name, bin_number, bin_size, is_names):
     if file_name.endswith('.out'):
         d = pickle.load(open(file_name, 'r'))
@@ -73,6 +79,8 @@ if __name__ == '__main__':
         else:
             print 'Using Count Min Sketch'
             print 'Error: ' + str(error(bins, check_min, truth, n=np.inf))
+
+        print 'Sparse norm: ' + str(sparse_norm(truth))
     else:
         print "python check_memory_usage.py algorithm file_name bin_number bin_size dataset"
         sys.exit()
