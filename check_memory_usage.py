@@ -9,7 +9,7 @@ from count_median_sketch import check_median
 from count_min_sketch import count_min_sketch, check_min
 from count_sketch import count_sketch, check_sketch
 
-@profile
+@profile(precision=5)
 def linear_count(data, bin_number, bin_size):
     counts = {}
     for d in data:
