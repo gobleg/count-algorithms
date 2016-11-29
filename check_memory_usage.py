@@ -7,7 +7,7 @@ import pickle
 
 from count_median_sketch import count_median_sketch, check_median
 from count_min_sketch import count_min_sketch, check_min
-from count_sketch import count_sketch
+from count_sketch import count_sketch, check_sketch
 
 @profile
 def linear_count(data, bin_number, bin_size):
@@ -51,7 +51,7 @@ if __name__ == '__main__':
         print 'Finished run'
         bins2 = pickle.load(open('shakespeare_linear.out', 'r'))
         top_k = dict(sorted(bins2.items(), key=operator.itemgetter(1), reverse=True)[:bin_size])
-        print 'Error: ' + str(error(bins, check_min, top_k, n=np.inf))
+        print 'Error: ' + str(error(bins, check_sketch, top_k, n=np.inf))
     else:
         print "python check_memory_usage.py algorithm file_name bin_number bin_size"
         sys.exit()

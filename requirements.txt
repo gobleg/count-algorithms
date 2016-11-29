@@ -1,2 +1,4 @@
 xxhash
 memory_profiler
+pandas
+psutil

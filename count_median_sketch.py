@@ -21,7 +21,7 @@ def check_median(bins, item):
         values.append(bins[i][key])
     if not values:
         values = [0]
-    return median(values)
+    return median(sorted(values))
 
 @profile
 def count_median_sketch(data, bin_number, bin_size):
