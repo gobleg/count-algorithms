@@ -70,5 +70,5 @@ if __name__ == '__main__':
             print 'Using Count Min Sketch'
             print 'Error: ' + str(error(bins, check_min, truth, n=np.inf))
     else:
-        print "python check_memory_usage.py algorithm file_name bin_number bin_size"
+        print "python check_memory_usage.py algorithm file_name bin_number bin_size dataset"
         sys.exit()
