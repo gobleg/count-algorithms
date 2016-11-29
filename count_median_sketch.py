@@ -1,5 +1,6 @@
 import xxhash
 from memory_profiler import profile
+from count_min_sketch import count_min_sketch, count_min_sketch2
 
 def median(values):
     if len(values) > 2:
@@ -17,3 +18,9 @@ def check_median(bins, item):
     if not values:
         values = [0]
     return median(sorted(values))
+
+def count_median_sketch(data, bin_number, bin_size):
+    return count_min_sketch(data, bin_number, bin_size)
+
+def count_median_sketch2(data, bins):
+    return count_min_sketch2(data, bins)
