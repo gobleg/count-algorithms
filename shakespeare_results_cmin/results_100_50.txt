@@ -2,12 +2,12 @@ Filename: /Users/quinnmac/Documents/Sublinear/count-algorithms/count_min_sketch.
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    17 160.22656 MiB   0.00000 MiB   @profile(precision=5)
+    17  65.49219 MiB   0.00000 MiB   @profile(precision=5)
     18                             def count_min_sketch(data, bin_number, bin_size):
-    19 160.26953 MiB   0.04297 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
-    20 164.38281 MiB   4.11328 MiB       for d in data:
-    21 164.38281 MiB   0.00000 MiB           hash(bins, d[0], d[1])
-    22 154.23828 MiB -10.14453 MiB       return bins
+    19  65.53516 MiB   0.04297 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
+    20  65.75781 MiB   0.22266 MiB       for d in data:
+    21  65.75781 MiB   0.00000 MiB           hash(bins, d[0], d[1])
+    22  65.75781 MiB   0.00000 MiB       return bins
 
 
 Finished run

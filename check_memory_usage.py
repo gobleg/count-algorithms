@@ -26,8 +26,12 @@ def error(observed, query_func, truth, n=1):
     return np.linalg.norm(vec, n)
 
 def run(algorithm, file_name, bin_number, bin_size, is_names):
+    if file_name.endswith('.out'):
+        d = pickle.load(open(file_name, 'r'))
+        data = [(k, v) for k, v in d.iteritems()]
+
     # Use for names
-    if is_names:
+    elif is_names:
         df = pd.read_csv(file_name, index_col='Id')
         data = []
         for row in df.iterrows():

@@ -2,15 +2,15 @@ Filename: /Users/quinnmac/Documents/Sublinear/count-algorithms/count_min_sketch.
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    17 160.38672 MiB   0.00000 MiB   @profile(precision=5)
+    17  65.21094 MiB   0.00000 MiB   @profile(precision=5)
     18                             def count_min_sketch(data, bin_number, bin_size):
-    19 160.38672 MiB   0.00000 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
-    20 166.93750 MiB   6.55078 MiB       for d in data:
-    21 166.93750 MiB   0.00000 MiB           hash(bins, d[0], d[1])
-    22 166.93750 MiB   0.00000 MiB       return bins
+    19  65.21484 MiB   0.00391 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
+    20  65.43359 MiB   0.21875 MiB       for d in data:
+    21  65.43359 MiB   0.00000 MiB           hash(bins, d[0], d[1])
+    22  65.43359 MiB   0.00000 MiB       return bins
 
 
 Finished run
 Checking Shakespeare
 Using Count Min Sketch
-Error: 148083.0
+Error: 148083
