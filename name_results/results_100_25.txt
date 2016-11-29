@@ -1,0 +1,16 @@
+Filename: /home/swampfox76/count-algorithms/count_sketch.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    21  52.31250 MiB   0.00000 MiB   @profile(precision=5)
+    22                             def count_sketch(data, bin_number, bin_size):
+    23  52.31641 MiB   0.00391 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
+    24  52.31641 MiB   0.00000 MiB       for d in data:
+    25  52.31641 MiB   0.00000 MiB           hash(bins, d[0], d[1])
+    26  52.31641 MiB   0.00000 MiB       return bins
+
+
+Finished run
+Checking Names
+Using Count Sketch
+Error: 25906.0
