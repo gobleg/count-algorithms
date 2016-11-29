@@ -1,0 +1,16 @@
+Filename: /Users/quinnmac/Documents/Sublinear/count-algorithms/count_min_sketch.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    17  64.33203 MiB   0.00000 MiB   @profile(precision=5)
+    18                             def count_min_sketch(data, bin_number, bin_size):
+    19  64.35547 MiB   0.02344 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
+    20  64.59375 MiB   0.23828 MiB       for d in data:
+    21  64.59375 MiB   0.00000 MiB           hash(bins, d[0], d[1])
+    22  64.59375 MiB   0.00000 MiB       return bins
+
+
+Finished run
+Checking Names
+Using Count Median Sketch
+Error: 39906
