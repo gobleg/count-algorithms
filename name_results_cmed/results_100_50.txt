@@ -1,16 +1,57 @@
-Filename: /Users/quinnmac/Documents/Sublinear/count-algorithms/count_min_sketch.py
+Filename: /home/swampfox76/count-algorithms/count_min_sketch.py
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    17  64.64844 MiB   0.00000 MiB   @profile(precision=5)
+    17  50.54688 MiB   0.00000 MiB   @profile(precision=5)
     18                             def count_min_sketch(data, bin_number, bin_size):
-    19  64.70312 MiB   0.05469 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
-    20  64.94531 MiB   0.24219 MiB       for d in data:
-    21  64.94531 MiB   0.00000 MiB           hash(bins, d[0], d[1])
-    22  64.94531 MiB   0.00000 MiB       return bins
+    19  50.55078 MiB   0.00391 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
+    20  50.61328 MiB   0.06250 MiB       for d in data:
+    21  50.61328 MiB   0.00000 MiB           hash(bins, d[0], d[1])
+    22  50.61328 MiB   0.00000 MiB       return bins
 
 
 Finished run
 Checking Names
 Using Count Median Sketch
-Error: 27658
+Infinity norm error: 27658.0
+Sparse norm: 5672575.0
+"Isabella" observed count 18819
+"Isabella" truth count 16900
+"Emma" observed count 34654
+"Emma" truth count 18804
+"Noah" observed count 27309
+"Noah" truth count 19102
+"Mason" observed count 30822
+"Mason" truth count 17076
+"Olivia" observed count 24916
+"Olivia" truth count 18842
+"Ethan" observed count 29682
+"Ethan" truth count 15608
+"Jacob" observed count 23884
+"Jacob" truth count 16235
+"Liam" observed count 27310
+"Liam" truth count 18374
+"Ava" observed count 21808
+"Ava" truth count 15360
+"Sophia" observed count 28737
+"Sophia" truth count 18385
+"Richard" observed count -33746
+"Richard" truth count -48200
+"James" observed count -71168
+"James" truth count -72770
+"Robert" observed count -66122
+"Robert" truth count -77465
+"Michael" observed count -30885
+"Michael" truth count -44872
+"Patricia" observed count -34257
+"Patricia" truth count -46063
+"David" observed count -31117
+"David" truth count -47635
+"William" observed count -31129
+"William" truth count -44911
+"Linda" observed count -77726
+"Linda" truth count -90713
+"John" observed count -49227
+"John" truth count -70739
+"Mary" observed count -51427
+"Mary" truth count -64416

@@ -2,15 +2,56 @@ Filename: /home/swampfox76/count-algorithms/count_sketch.py
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    21  52.19922 MiB   0.00000 MiB   @profile(precision=5)
+    21  51.04297 MiB   0.00000 MiB   @profile(precision=5)
     22                             def count_sketch(data, bin_number, bin_size):
-    23  52.19922 MiB   0.00000 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
-    24  52.19922 MiB   0.00000 MiB       for d in data:
-    25  52.19922 MiB   0.00000 MiB           hash(bins, d[0], d[1])
-    26  52.19922 MiB   0.00000 MiB       return bins
+    23  51.04297 MiB   0.00000 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
+    24  51.04297 MiB   0.00000 MiB       for d in data:
+    25  51.04297 MiB   0.00000 MiB           hash(bins, d[0], d[1])
+    26  51.04297 MiB   0.00000 MiB       return bins
 
 
 Finished run
 Checking Names
 Using Count Sketch
-Error: 24384.0
+Infinity norm error: 24384.0
+Sparse norm: 5672575.0
+"Isabella" observed count 21874
+"Isabella" truth count 16900
+"Emma" observed count 12143
+"Emma" truth count 18804
+"Noah" observed count 19916
+"Noah" truth count 19102
+"Mason" observed count 16305
+"Mason" truth count 17076
+"Olivia" observed count 16046
+"Olivia" truth count 18842
+"Ethan" observed count 13133
+"Ethan" truth count 15608
+"Jacob" observed count 14700
+"Jacob" truth count 16235
+"Liam" observed count 12606
+"Liam" truth count 18374
+"Ava" observed count 15419
+"Ava" truth count 15360
+"Sophia" observed count 17487
+"Sophia" truth count 18385
+"Richard" observed count -54595
+"Richard" truth count -48200
+"James" observed count -66789
+"James" truth count -72770
+"Robert" observed count -73373
+"Robert" truth count -77465
+"Michael" observed count -38523
+"Michael" truth count -44872
+"Patricia" observed count -44956
+"Patricia" truth count -46063
+"David" observed count -42583
+"David" truth count -47635
+"William" observed count -41830
+"William" truth count -44911
+"Linda" observed count -91864
+"Linda" truth count -90713
+"John" observed count -72838
+"John" truth count -70739
+"Mary" observed count -64384
+"Mary" truth count -64416

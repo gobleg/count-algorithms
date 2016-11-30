@@ -1,0 +1,57 @@
+Filename: /home/swampfox76/count-algorithms/count_sketch.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    21  50.75391 MiB   0.00000 MiB   @profile(precision=5)
+    22                             def count_sketch(data, bin_number, bin_size):
+    23  50.80078 MiB   0.04688 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
+    24  51.13672 MiB   0.33594 MiB       for d in data:
+    25  51.13672 MiB   0.00000 MiB           hash(bins, d[0], d[1])
+    26  51.13672 MiB   0.00000 MiB       return bins
+
+
+Finished run
+Checking Names
+Using Count Sketch
+Infinity norm error: 5823.0
+Sparse norm: 5672575.0
+"Isabella" observed count 16777
+"Isabella" truth count 16900
+"Emma" observed count 20435
+"Emma" truth count 18804
+"Noah" observed count 18667
+"Noah" truth count 19102
+"Mason" observed count 17195
+"Mason" truth count 17076
+"Olivia" observed count 18958
+"Olivia" truth count 18842
+"Ethan" observed count 15284
+"Ethan" truth count 15608
+"Jacob" observed count 16172
+"Jacob" truth count 16235
+"Liam" observed count 17502
+"Liam" truth count 18374
+"Ava" observed count 15536
+"Ava" truth count 15360
+"Sophia" observed count 20363
+"Sophia" truth count 18385
+"Richard" observed count -49357
+"Richard" truth count -48200
+"James" observed count -73249
+"James" truth count -72770
+"Robert" observed count -77726
+"Robert" truth count -77465
+"Michael" observed count -44352
+"Michael" truth count -44872
+"Patricia" observed count -46818
+"Patricia" truth count -46063
+"David" observed count -47392
+"David" truth count -47635
+"William" observed count -45223
+"William" truth count -44911
+"Linda" observed count -90657
+"Linda" truth count -90713
+"John" observed count -70697
+"John" truth count -70739
+"Mary" observed count -66533
+"Mary" truth count -64416

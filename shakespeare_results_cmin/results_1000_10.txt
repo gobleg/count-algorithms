@@ -1,16 +1,37 @@
-Filename: /Users/quinnmac/Documents/Sublinear/count-algorithms/count_min_sketch.py
+Filename: /home/swampfox76/count-algorithms/count_min_sketch.py
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    17  65.50000 MiB   0.00000 MiB   @profile(precision=5)
+    17  49.66406 MiB   0.00000 MiB   @profile(precision=5)
     18                             def count_min_sketch(data, bin_number, bin_size):
-    19  65.58984 MiB   0.08984 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
-    20  65.80859 MiB   0.21875 MiB       for d in data:
-    21  65.80859 MiB   0.00000 MiB           hash(bins, d[0], d[1])
-    22  65.80859 MiB   0.00000 MiB       return bins
+    19  49.73047 MiB   0.06641 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
+    20  49.87891 MiB   0.14844 MiB       for d in data:
+    21  49.87891 MiB   0.00000 MiB           hash(bins, d[0], d[1])
+    22  49.87891 MiB   0.00000 MiB       return bins
 
 
 Finished run
 Checking Shakespeare
 Using Count Min Sketch
-Error: 52998
+Infinity norm error: 52998.0
+Sparse norm: 725734.0
+"and" observed count 73269
+"and" truth count 26728
+"a" observed count 62005
+"a" truth count 14613
+"that" observed count 57451
+"that" truth count 11121
+"i" observed count 60821
+"i" truth count 20681
+"of" observed count 62425
+"of" truth count 18173
+"to" observed count 66038
+"to" truth count 19198
+"in" observed count 53775
+"in" truth count 10967
+"the" observed count 75098
+"the" truth count 27643
+"my" observed count 59953
+"my" truth count 12480
+"you" observed count 57442
+"you" truth count 13649
