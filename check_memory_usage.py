@@ -66,21 +66,29 @@ if __name__ == '__main__':
         print 'Finished run'
         if is_names:
             truth = pickle.load(open('names_linear.out', 'r'))
+            hh = ['Isabella', 'Emma', 'Noah', 'Mason', 'Olivia', 'Ethan', 'Jacob', 'Liam', 'Ava', 'Sophia', 
+            'Richard', 'James', 'Robert', 'Michael', 'Patricia', 'David', 'William', 'Linda', 'John', 'Mary',]
             print 'Checking Names'
         else:
             truth = pickle.load(open('shakespeare_linear.out', 'r'))
+            hh = ['and', 'a', 'that', 'i', 'of', 'to', 'in', 'the', 'my', 'you']
             print 'Checking Shakespeare'
+
         if algorithm == 'count_sketch':
             print 'Using Count Sketch'
-            print 'Error: ' + str(error(bins, check_sketch, truth, n=np.inf))
+            query_func = check_sketch
         elif algorithm == 'count_median_sketch':
             print 'Using Count Median Sketch'
-            print 'Error: ' + str(error(bins, check_median, truth, n=np.inf))
+            query_func = check_median
         else:
             print 'Using Count Min Sketch'
-            print 'Error: ' + str(error(bins, check_min, truth, n=np.inf))
-
-        print 'Sparse norm: ' + str(sparse_norm(truth))
+            query_func = check_min
+            
+        print 'Infinity norm error: ' + str(error(bins, query_func, truth, n=np.inf))
+        print 'Sparse norm: ' + str(sparse_norm(truth.copy()))
+        for h in hh:
+            print '"%s" observed count %d' % (h, query_func(bins, h))
+            print '"%s" truth count %d' % (h, truth[h])
     else:
         print "python check_memory_usage.py algorithm file_name bin_number bin_size dataset"
         sys.exit()
