@@ -1,0 +1,37 @@
+Filename: /home/swampfox76/count-algorithms/count_min_sketch.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    17  49.73438 MiB   0.00000 MiB   @profile(precision=5)
+    18                             def count_min_sketch(data, bin_number, bin_size):
+    19  51.54688 MiB   1.81250 MiB       bins = [[0] * bin_size for i in range(0, bin_number)]
+    20  55.45703 MiB   3.91016 MiB       for d in data:
+    21  55.45703 MiB   0.00000 MiB           hash(bins, d[0], d[1])
+    22  55.45703 MiB   0.00000 MiB       return bins
+
+
+Finished run
+Checking Shakespeare
+Using Count Median Sketch
+Infinity norm error: 497.0
+Sparse norm: 725734.0
+"and" observed count 27073
+"and" truth count 26728
+"a" observed count 15002
+"a" truth count 14613
+"that" observed count 11507
+"that" truth count 11121
+"i" observed count 21057
+"i" truth count 20681
+"of" observed count 18570
+"of" truth count 18173
+"to" observed count 19570
+"to" truth count 19198
+"in" observed count 11326
+"in" truth count 10967
+"the" observed count 27990
+"the" truth count 27643
+"my" observed count 12830
+"my" truth count 12480
+"you" observed count 14001
+"you" truth count 13649
